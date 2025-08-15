@@ -14,4 +14,4 @@ documentation = "https://docs.rs/embassy-embedded-time"
 
 [dependencies]
 embassy-time = { version = "0.4.0" }
-embedded-time = { version = "0.12.1" }
+embedded-time = { git = "https://github.com/FluenTech/embedded-time.git", branch = "release/v0.13.0" }
