@@ -1,0 +1,17 @@
+[package]
+name = "embassy-embedded-time"
+authors = ["SimonIT <simonit.orig@gmail.com"]
+version = "0.1.0"
+edition = "2024"
+categories = ["embedded", "date-and-time", "development-tools"]
+keywords = ["embedded", "date", "time", "embassy-time", "embedded-time"]
+license-file = "LICENSE"
+description = "Implementation of embedded-time Clocks using embassy-time"
+
+repository = "https://github.com/SimonIT/embassy-embedded-time"
+readme = "README.md"
+documentation = "https://docs.rs/embassy-embedded-time"
+
+[dependencies]
+embassy-time = { version = "0.4.0" }
+embedded-time = { version = "0.12.1" }
