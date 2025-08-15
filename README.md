@@ -2,7 +2,7 @@
 
 Provides an
 [`embedded-time::Clock`](https://docs.rs/embedded-time/latest/embedded_time/clock/trait.Clock.html)
-using [`embassy_time`] so that `embedded-time` can easily be used in on-host testing.
+using [`embassy_time`] so that `embedded-time` can easily be used with [embassy](https://embassy.dev/).
 
 ### Usage
 
