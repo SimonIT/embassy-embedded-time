@@ -2,9 +2,9 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+  release:
+    types: [ published ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -128,3 +128,24 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: test
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [ style, clippy, documentation, audit, compile, test ]
+    if: github.event_name == 'release'
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          override: true
+          toolchain: stable
+          profile: minimal
+
+      - name: Cargo Publish
+        uses: actions-rs/cargo@v1
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        with:
+          command: publish
