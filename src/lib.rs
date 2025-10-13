@@ -19,6 +19,8 @@
 
 #![no_std]
 
+#[cfg(feature = "defmt")]
+use defmt::debug;
 use embedded_time::clock::Error;
 use embedded_time::duration::Fraction;
 use embedded_time::{Clock, Instant};
@@ -32,6 +34,7 @@ use embedded_time::{Clock, Instant};
 ///
 /// # Limitations
 /// The clock represents up to ~584542 years worth of time, after which it will roll over.
+#[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[derive(Copy, Clone, Debug)]
 pub struct EmbassyClock {
     start: embassy_time::Instant,
@@ -39,9 +42,12 @@ pub struct EmbassyClock {
 
 impl Default for EmbassyClock {
     fn default() -> Self {
-        EmbassyClock {
+        let clock = EmbassyClock {
             start: embassy_time::Instant::now(),
-        }
+        };
+        #[cfg(feature = "defmt")]
+        debug!("Created clock: {:?}", clock);
+        clock
     }
 }
 
@@ -59,6 +65,11 @@ impl Clock for EmbassyClock {
 
         let elapsed = now.duration_since(self.start);
 
-        Ok(Instant::new(elapsed.as_micros()))
+        let instant = Instant::new(elapsed.as_micros());
+
+        #[cfg(feature = "defmt")]
+        debug!("Created instant: {:?}", instant);
+
+        Ok(instant)
     }
 }
