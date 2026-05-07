@@ -13,9 +13,13 @@ readme = "README.md"
 documentation = "https://docs.rs/embassy-embedded-time"
 
 [dependencies]
-embassy-time = { version = "0.4.0" }
+embassy-time = { version = "0.5.0" }
 embedded-time = { git = "https://github.com/SimonIT/embedded-time.git", branch = "update-defmt" }
 defmt = { version = "1.0.1", optional = true }
+
+[dev-dependencies]
+embassy-time = { version = "0.5.0", features = ["mock-driver"] }
+critical-section = { version = "1.2.0", features = ["std"] }
 
 [features]
 defmt = ["dep:defmt", "embassy-time/defmt", "embedded-time/defmt"]
