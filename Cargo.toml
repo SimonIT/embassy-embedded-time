@@ -1,7 +1,7 @@
 [package]
 name = "embassy-embedded-time"
 authors = ["SimonIT <simonit.orig@gmail.com"]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 categories = ["embedded", "date-and-time", "development-tools"]
 keywords = ["embedded", "date", "time", "embassy-time", "embedded-time"]
